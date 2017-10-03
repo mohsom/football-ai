@@ -1,0 +1,166 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&subset=latin,cyrillic);
+
+@import 'checkbox.css';
+
+* {
+	box-sizing: border-box;
+	font-family: 'Roboto Slab', serif;
+	outline: none;
+}
+
+.game-content-wrapper {
+	width:868px;
+	height:543px;
+	margin: 0 auto;
+	background: url('../img/court.svg') no-repeat 2px 0;
+	background-size: 862px 543px;
+	padding: 34px 80px 36px;
+	border-radius: 20px;
+}
+
+.game-content {
+	width: 708px;
+	height: 473px;
+	margin: 0;
+	position: relative;
+}
+
+.left-side {
+	width: 4px;
+	height: 473px;
+	position: absolute;
+	left: -2px;
+	top: 0;
+	background: #ff4646;
+	border-radius: 2px;
+}
+
+.right-side {
+	width: 4px;
+	height: 473px;
+	position: absolute;
+	right: -2px;
+	top: 0;
+	background: #4646ff;
+	border-radius: 2px;
+}
+
+.ball {
+	width:20px;
+	height:20px;
+	border-radius: 50%;
+	position: absolute;
+	color: #ffffff;
+	font-size: 14px;
+	text-align: center;
+	line-height: 20px;
+	z-index: 10;
+}
+
+.guide {
+	width: 1px;
+	background: #F6BB42;
+	height: 1px;
+	position: absolute;
+	left: 10px;
+	top: 20px;
+	z-index: 9;
+}
+
+.red.ball span {
+	transform: rotate(1.57rad);
+	display: inline-block;
+}
+
+.blue.ball span {
+	transform: rotate(-1.57rad);
+	display: inline-block;
+}
+
+.soccer-ball {
+	width:20px;
+	height:20px;
+	background-image: url('../img/soccer-ball.svg');
+	background-size:  20px 20px;
+	position: absolute;
+	z-index: 10;
+}
+
+#score {
+	margin: 40px 0 0 0;
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.red {
+	background-color: red;
+}
+
+.blue {
+	background-color: blue;
+}
+
+.yellow {
+	background-color: yellow;
+}
+.black {
+	background-color: black;
+}
+
+
+.controls {
+	width: 870px;
+	margin: 15px auto;
+	display: flex;
+}
+
+.controls .controls__button {
+  font-size: 1rem;
+  line-height: 1rem;
+  font-family: 'Roboto Slab', serif;
+  position: relative;
+  display: inline-block;
+  margin: 0 14px 0 0;
+  padding: 11px 15px 13px 15px;
+  text-decoration: none!important;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: #7f993a;
+  text-align: center;
+  cursor: pointer;
+  border: 0;
+}
+
+.controls .controls__button:hover {
+	text-decoration: none;
+	background-color: #a3c644;
+}
+
+.controls .controls__button#state-button {
+	flex-basis: 84px;
+}
+
+.controls .controls__button--spead {
+	background: #1A9CB0;
+	margin: 0 0 0 14px;
+}
+
+.controls .active, .controls .controls__button--spead:hover {
+	background: #39C2D7;
+}
+
+.controls .controls__button:disabled {
+	background: #CCCCCC;
+	cursor: default;
+}
+
+.controls .controls__checkbox {
+	font-size: 14px;
+	height: 40px;
+	line-height: 42px;
+}
+
+.controls .controls__space {
+	flex: 1;
+}

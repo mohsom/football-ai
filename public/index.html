@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>AI Challenge</title>
+		<link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
+	</head>
+	<body>
+		<div class="game-content-wrapper">
+			<div class="game-content">
+				<div class="right-side"></div>
+				<div class="left-side"></div>
+				<div id="ball-1" class="ball red"><span>0</span> <div id="arrow-1" class="guide"></div></div>
+				<div id="ball-2" class="ball red"><span>1</span> <div id="arrow-2" class="guide"></div></div>
+				<div id="ball-3" class="ball red"><span>2</span> <div id="arrow-3" class="guide"></div></div>
+				<div id="ball-4" class="ball blue"><span>3</span> <div id="arrow-4" class="guide"></div></div>
+				<div id="ball-5" class="ball blue"><span>4</span> <div id="arrow-5" class="guide"></div></div>
+				<div id="ball-6" class="ball blue"><span>5</span> <div id="arrow-6" class="guide"></div></div>
+				<div id="ball-7" class="soccer-ball"> <div id="arrow-7" class="guide"></div></div>
+			</div>
+		</div>
+		<div id="score">0 - 0</div>
+		<div class="controls">
+			<button class="controls__button" id="state-button">Start</button>
+			<button class="controls__button" id="next-step-button">Next Step</button>
+			<div class="controls__checkbox">
+				<input type="checkbox" class="checkbox" id="debugButton" />
+				<label for="debugButton">Debug</label>
+			</div>
+			<div class="controls__space"></div>
+			<button class="controls__button controls__button--spead active" data-spead="1">x1</button>
+			<button class="controls__button controls__button--spead" data-spead="2">x0.5</button>
+			<button class="controls__button controls__button--spead" data-spead="4">x0.25</button>
+		</div>
+		<script src="/assets/js/renderer.js"></script>
+		<script src="/assets/js/game.js"></script>
+	</body>
+</html>

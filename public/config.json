@@ -1,0 +1,36 @@
+{
+  "field": {
+    "width": 708,
+    "height": 473
+  },
+  "teams": [
+    {
+      "type": "home",
+      "direction": 0,
+      "goal": 0
+    },
+    {
+      "type": "guest",
+      "direction": 3.141592653589793,
+      "goal": 0
+    }
+  ],
+  "player": {
+    "maxVelocity": 6,
+    "maxVelocityIncrement": 0.5,
+    "radius": 10,
+    "mass": 100
+  },
+  "ball": {
+    "maxVelocity": 15,
+    "radius": 10,
+    "mass": 5,
+    "moveDeceleration": 0.4,
+    "kickAcceleration": 8
+  },
+  "playersInTeam": 3,
+  "periodDuration": 30000,
+  "tickDuration": 20,
+  "bot1": "userBot.js",
+  "bot2": "defaultBot.js"
+}
