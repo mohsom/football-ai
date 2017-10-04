@@ -14,31 +14,49 @@ function getPlayerMove(data) {
   
   var secondZoneStartX = data.settings.field.width / 4;
 
-  direction = getDirectionTo(currentPlayer, ballStop);
-  velocity = data.settings.player.maxVelocity;
+  if (ballStop.x < currentPlayer.x) {
+      return moveBehindTheBall(currentPlayer, ball, data);
+  }
 
   if (data.playerIndex === 1) {
     let moveToX = ball.x > secondZoneStartX ? secondZoneStartX : ball.x;
+    return moveToPoint(currentPlayer, {x: moveToX, y: ball.y}, data);
 
-    direction = getDirectionTo(currentPlayer, {x: moveToX, y: ball.y}); 
+  } else if (data.playerIndex === 0) {
+    let opponents = data.opponentTeam.players;
+    let nearestToBall = opponents[0],
+      minDistance = getDistance(nearestToBall, ball);
+
+    for (let o of opponents) {
+      if (getDistance(o, ball) < minDistance) {
+          nearestToBall = o;
+        }
+    }    
+
+    return moveToPoint(currentPlayer, nearestToBall, data);
   }
 
-  if (ballStop.x < currentPlayer.x) {
-    // do not kick to the my goalpost, move to the position behind the ball
-    const ballRadius = ball.settings.radius;
-    var stopPoint = {
-      x: ballStop.x - ballRadius * 2,
-      y: ballStop.y + (ballStop.y > currentPlayer.y ? - ballRadius : + ballRadius) * 2
-    }
-    direction = getDirectionTo(currentPlayer, stopPoint);
-    velocity = getDistance(currentPlayer, stopPoint);
-  }
-
-  return {
-    direction: direction,
-    velocity: velocity
-  };
+  return moveToPoint(currentPlayer, ball, data);
 }
+
+function moveBehindTheBall(currentPlayer, ball, data) {
+  let ballStop = getBallStats(ball, data.settings);
+  let direction, velocity;
+  const ballRadius = ball.settings.radius;
+  var stopPoint = {
+    x: ballStop.x - ballRadius * 2,
+    y: ballStop.y + (ballStop.y > currentPlayer.y ? - ballRadius : + ballRadius) * 2
+  };
+
+  return moveToPoint(currentPlayer, stopPoint);
+}
+
+function moveToPoint(player, point, data) {
+    return {
+      direction: getDirectionTo(player, point),
+      velocity: getDistance(player, point)
+    };
+} 
 
 function getBallStats(ball, gameSettings) {
   var stopTime = getStopTime(ball);
@@ -64,6 +82,17 @@ function getDirectionTo(startPoint, endPoint) {
 
 function getDistance(point1, point2) {
   return Math.hypot(point1.x-point2.x, point1.y - point2.y);
+}
+
+function getNearestToBall(players, ball) {
+  let nearestToBall = players[0],
+    minDistance = getDistance(nearestToBall, ball);
+
+  for (let o of players) {
+    if (getDistance(o, ball) < minDistance) {
+      nearestToBall = o;
+    }
+  }
 }
 
 onmessage = (e) => postMessage(getPlayerMove(e.data));
