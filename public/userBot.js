@@ -19,22 +19,26 @@ function getPlayerMove(data) {
   }
 
   if (data.playerIndex === 1) {
-    let moveToX = ball.x > secondZoneStartX ? secondZoneStartX : ball.x;
-    return moveToPoint(currentPlayer, {x: moveToX, y: ball.y}, data);
+    // let moveToX = ball.x > secondZoneStartX ? secondZoneStartX : ball.x;
+    // return moveToPoint(currentPlayer, {x: moveToX, y: ball.y}, data);
 
-  } else if (data.playerIndex === 0) {
-    let opponents = data.opponentTeam.players;
-    let nearestToBall = opponents[0],
-      minDistance = getDistance(nearestToBall, ball);
+    let isBallInZone = ball.x <= secondZoneStartX,
+        velocity, direction;
 
-    for (let o of opponents) {
-      if (getDistance(o, ball) < minDistance) {
-          nearestToBall = o;
-        }
+    let isPlayerInZone = currentPlayer.x <=secondZoneStartX;    
+
+    velocity = data.settings.player.maxVelocity;
+
+    let point = {
+      x: isBallInZone ? ballStop.x : (isPlayerInZone ? currentPlayer.x : secondZoneStartX),
+      y: ballStop.y
+    };
+
+    return {
+      direction: getDirectionTo(currentPlayer, point),
+      velocity
     }    
-
-    return moveToPoint(currentPlayer, nearestToBall, data);
-  }
+  } 
 
   return moveToPoint(currentPlayer, ball, data);
 }
@@ -44,8 +48,8 @@ function moveBehindTheBall(currentPlayer, ball, data) {
   let direction, velocity;
   const ballRadius = ball.settings.radius;
   var stopPoint = {
-    x: ballStop.x - ballRadius * 2,
-    y: ballStop.y + (ballStop.y > currentPlayer.y ? - ballRadius : + ballRadius) * 2
+    x: ballStop.x - ballRadius * 1.5,
+    y: ballStop.y + (ballStop.y > currentPlayer.y ? - ballRadius : + ballRadius) * 1.5
   };
 
   return moveToPoint(currentPlayer, stopPoint);
